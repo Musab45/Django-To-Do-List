@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .permissions import isOwnerOrReadOnly
+from django_filters.rest_framework import DjangoFilterBackend
+from .filters import TaskFilter
 
 from .models import Task
 from .serializers import TaskSerializer
@@ -12,6 +14,9 @@ from .serializers import TaskSerializer
 class TaskListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated, isOwnerOrReadOnly]
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = TaskFilter
 
     def get_queryset(self):
         user=self.request.user

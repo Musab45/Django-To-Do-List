@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tasks.apps.TasksConfig',  # Custom app for managing tasks
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
